@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recomendados de Twitch</title>
+</head>
+<body>
+    <h1>Recomendados de Twitch</h1>
+    <ul id="recomendados-list">
+        <!-- Los datos se cargarán aquí dinámicamente -->
+    </ul>
+
+    <script>
+        // Cargar los datos JSON
+        fetch('recomendados.json')
+            .then(response => response.json())
+            .then(data => {
+                const recomendadosList = document.getElementById('recomendados-list');
+                data.forEach(canal => {
+                    const listItem = document.createElement('li');
+                    listItem.innerHTML = `
+                        <h2>${canal.name}</h2>
+                        <p>${canal.title}</p>
+                        <p>Viewers: ${canal.viewers}</p>
+                        <img src="${canal.image}" alt="${canal.name}"/>
+                    `;
+                    recomendadosList.appendChild(listItem);
+                });
+            })
+            .catch(error => {
+                console.error('Error al cargar los datos:', error);
+            });
+    </script>
+</body>
+</html>
