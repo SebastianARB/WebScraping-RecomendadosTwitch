@@ -12,25 +12,31 @@
     </ul>
 
     <script>
-        // Cargar los datos JSON
-        fetch('recomendados.json')
-            .then(response => response.json())
-            .then(data => {
+        document.addEventListener("DOMContentLoaded", async () => {
+            try {
+                const response = await fetch('recomendados.json');
+                const data = await response.json();
                 const recomendadosList = document.getElementById('recomendados-list');
+
                 data.forEach(canal => {
-                    const listItem = document.createElement('li');
-                    listItem.innerHTML = `
-                        <h2>${canal.name}</h2>
-                        <p>${canal.title}</p>
-                        <p>Viewers: ${canal.viewers}</p>
-                        <img src="${canal.image}" alt="${canal.name}"/>
-                    `;
+                    const listItem = createListItem(canal);
                     recomendadosList.appendChild(listItem);
                 });
-            })
-            .catch(error => {
+            } catch (error) {
                 console.error('Error al cargar los datos:', error);
-            });
+            }
+        });
+
+        function createListItem(canal) {
+            const listItem = document.createElement('li');
+            listItem.innerHTML = `
+                <h2>${canal.name}</h2>
+                <p>${canal.title}</p>
+                <p>Viewers: ${canal.viewers}</p>
+                <img src="${canal.image || 'placeholder.jpg'}" alt="${canal.name}"/>
+            `;
+            return listItem;
+        }
     </script>
 </body>
 </html>

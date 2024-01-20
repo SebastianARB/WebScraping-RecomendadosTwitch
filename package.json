@@ -1,5 +1,5 @@
 {
-  "name": "pruebauf",
+  "name": "pruebatwitch",
   "version": "1.0.0",
   "description": "",
   "main": "twitch.js",
@@ -10,6 +10,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "puppeteer": "^21.2.1"
+    "puppeteer": "^21.7.0"
   }
 }
